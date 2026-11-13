@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>الفصل 4 · الطبقة الفيزيائية</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" lang="ar">
+<nav class="nav" aria-label="الفصول"><a class="home" href="index.html" style="--h:212">الرئيسية</a><a href="chapter1.html" style="--h:212"><b>1</b><bdi>Networking</bdi></a><a href="chapter2.html" style="--h:188"><b>2</b><bdi>IOS</bdi></a><a href="chapter3.html" style="--h:150"><b>3</b><bdi>Models</bdi></a><a href="chapter4.html" style="--h:30" aria-current="page"><b>4</b><bdi>Physical</bdi></a><a href="chapter5.html" style="--h:280"><b>5</b><bdi>Numbers</bdi></a><a href="chapter6.html" style="--h:335"><b>6</b><bdi>Data Link</bdi></a><a href="chapter7.html" style="--h:5"><b>7</b><bdi>Switching</bdi></a><a href="chapter8.html" style="--h:250"><b>8</b><bdi>Network</bdi></a><a href="chapter9.html" style="--h:95"><b>9</b><bdi>ARP</bdi></a><a href="cheat.html" style="--h:212"><b>★</b><bdi>Cheat</bdi></a></nav>
+<section class="ch" id="ch4" style="--h:30">
+  <div class="chh"><span class="no">4</span><div><h2>الطبقة الفيزيائية</h2><span class="en">Chapter 4 · Physical Layer</span></div>
+    <label class="done"><input type="checkbox" id="d4" data-ch="4"> راجعته</label></div>
+  <p class="one"><b>في جملة:</b> الطبقة الفيزيائية تنقل البتّات عبر الوسط: نحاس (<bdi>UTP</bdi> الأشهر)، أو ألياف (أبعد وأسرع وبلا تأثر بالتداخل)، أو لاسلكي (أكثر حرية وأقل أماناً).</p>
+
+  <span class="core">Physical Layer</span>
+  <ul class="mm">
+    <li><b>المعايير الثلاثة</b><span>Physical components</span><span>Encoding: Manchester · 4B/5B · 8B/10B</span><span>Signaling</span></li>
+    <li><b>الإشارة</b><span>Copper = electrical</span><span>Fiber = light</span><span>Wireless = microwave</span></li>
+    <li><b>مقاييس الأداء</b><span>Bandwidth</span><span>Latency</span><span>Throughput</span><span>Goodput = Throughput − overhead</span></li>
+    <li><b>مشاكل النحاس</b><span>Attenuation</span><span>EMI / RFI</span><span>Crosstalk</span></li>
+    <li><b>أنواع النحاس</b><span>UTP</span><span>STP</span><span>Coaxial</span></li>
+    <li><b>الألياف</b><span>SMF = laser, long distance</span><span>MMF = LED, up to 550 m</span><span>ST · SC · LC</span></li>
+    <li><b>اللاسلكي</b><span>Wi-Fi 802.11</span><span>Bluetooth 802.15</span><span>WiMAX 802.16</span><span>Zigbee 802.15.4</span></li>
+  </ul>
+
+  <div class="tw"><table>
+    <tr><th>الكابل</th><th>متى يُستخدم</th></tr>
+    <tr><td><bdi>Straight-through</bdi></td><td>جهاز طرفي إلى جهاز شبكة (<bdi>Host</bdi> إلى <bdi>Switch</bdi>)</td></tr>
+    <tr><td><bdi>Crossover</bdi></td><td>جهازان من النوع نفسه (قديم بسبب <bdi>Auto-MDIX</bdi>)</td></tr>
+    <tr><td><bdi>Rollover</bdi></td><td>منفذ <bdi>Console</bdi> على الراوتر أو السويتش</td></tr>
+  </table></div>
+  <div class="tw"><table>
+    <tr><th></th><th><bdi>UTP</bdi></th><th><bdi>Fiber</bdi></th></tr>
+    <tr><td>الحزمة</td><td>10 <bdi>Mb/s</bdi> إلى 10 <bdi>Gb/s</bdi></td><td>10 <bdi>Mb/s</bdi> إلى 100 <bdi>Gb/s</bdi></td></tr>
+    <tr><td>المسافة</td><td>1 إلى 100 متر</td><td>1 إلى 100,000 متر</td></tr>
+    <tr><td>مناعة <bdi>EMI/RFI</bdi></td><td>منخفضة</td><td>كاملة</td></tr>
+    <tr><td>التكلفة والتركيب</td><td>الأقل</td><td>الأعلى</td></tr>
+  </table></div>
+
+  <div class="parts">
+    <div class="part"><h3>القسم الأول · أساسيات الطبقة والنحاس</h3>
+      <p>الـ <bdi>NIC</bdi> يوصل الجهاز بالشبكة (سلكياً أو لاسلكياً). الطبقة الفيزيائية آخر خطوة في التغليف: تحوّل الإطار إلى إشارات. الترميز يحول البتّات إلى نمط يتعرف عليه الجهاز التالي، والإشارة تختلف بنوع الوسط. وحدات الحزمة: <bdi>bps</bdi> ثم <bdi>Kbps</bdi> ثم <bdi>Mbps</bdi> ثم <bdi>Gbps</bdi> ثم <bdi>Tbps</bdi>، كل واحدة ×1000. النحاس رخيص وسهل التركيب لكن الإشارة تضعف مع المسافة (<bdi>Attenuation</bdi>) وتتأثر بالتداخل. العلاج: التزام بحدود الطول، وتدريع وتأريض، والتفاف الأزواج.</p></div>
+    <div class="part"><h3>القسم الثاني · <bdi>UTP</bdi> والألياف واللاسلكي</h3>
+      <p><bdi>UTP</bdi> أربعة أزواج ملونة ملتفة، يقلل <bdi>Crosstalk</bdi> بخاصيتين: الإلغاء (قطبية معاكسة تلغي المجالات) واختلاف عدد الالتفافات لكل سلك. المعايير <bdi>TIA/EIA-568</bdi> للأطوال والتوصيل، وفئاتها <bdi>Cat 3</bdi> و<bdi>Cat 5/5e</bdi> و<bdi>Cat 6</bdi>، والموصل <bdi>RJ-45</bdi>. الألياف أغلى ولا تتأثر بالتداخل: <bdi>SMF</bdi> بقلب صغير وليزر للمسافات الطويلة، و<bdi>MMF</bdi> بقلب أكبر و<bdi>LED</bdi> في الشبكات المحلية. الغلاف الأصفر لـ <bdi>SMF</bdi> والبرتقالي أو الأزرق المخضر لـ <bdi>MMF</bdi>. اللاسلكي يعاني من التغطية والتداخل والأمان، ويعمل بنصف مزدوج (<bdi>Half-duplex</bdi>) على وسط مشترك.</p></div>
+  </div>
+
+
+  <details><summary>معادلة <bdi>Goodput</bdi>؟</summary><p><bdi>Goodput</bdi> = <bdi>Throughput</bdi> − <bdi>traffic overhead</bdi>.</p></details>
+  <details><summary>لماذا تُلتف أزواج <bdi>UTP</bdi>؟</summary><p>لتلغي المجالات المغناطيسية بعضها وتقلل <bdi>Crosstalk</bdi> والتداخل الخارجي.</p></details>
+  <details><summary>أي ألياف تناسب مئات الكيلومترات؟</summary><p><bdi>Single-mode</bdi> (<bdi>SMF</bdi>) لأن تشتت الضوء فيها أقل.</p></details>
+  <p class="lk">لا سؤال مباشر من هذا الفصل في التقييمات التسعة. السؤال 44 (<bdi>WiMAX</bdi>) يعتمد على فصل لاحق غير موجود في الملف.</p>
+</section>
+<div class="pager" style="--h:30"><a href="chapter3.html">← السابق</a><a href="chapter5.html">التالي →</a></div>
+</div>
+<script>
+(function(){
+  var K="net-guide-done",done=[];
+  try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){done=[]}
+  document.querySelectorAll("input[data-ch]").forEach(function(b){
+    b.checked=done.indexOf(b.dataset.ch)>-1;
+    b.addEventListener("change",function(){
+      var a=[];try{a=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
+      a=a.filter(function(x){return x!==b.dataset.ch});
+      if(b.checked)a.push(b.dataset.ch);
+      try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>

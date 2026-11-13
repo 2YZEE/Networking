@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>الفصل 8 · طبقة الشبكة</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" lang="ar">
+<nav class="nav" aria-label="الفصول"><a class="home" href="index.html" style="--h:212">الرئيسية</a><a href="chapter1.html" style="--h:212"><b>1</b><bdi>Networking</bdi></a><a href="chapter2.html" style="--h:188"><b>2</b><bdi>IOS</bdi></a><a href="chapter3.html" style="--h:150"><b>3</b><bdi>Models</bdi></a><a href="chapter4.html" style="--h:30"><b>4</b><bdi>Physical</bdi></a><a href="chapter5.html" style="--h:280"><b>5</b><bdi>Numbers</bdi></a><a href="chapter6.html" style="--h:335"><b>6</b><bdi>Data Link</bdi></a><a href="chapter7.html" style="--h:5"><b>7</b><bdi>Switching</bdi></a><a href="chapter8.html" style="--h:250" aria-current="page"><b>8</b><bdi>Network</bdi></a><a href="chapter9.html" style="--h:95"><b>9</b><bdi>ARP</bdi></a><a href="cheat.html" style="--h:212"><b>★</b><bdi>Cheat</bdi></a></nav>
+<section class="ch" id="ch8" style="--h:250">
+  <div class="chh"><span class="no">8</span><div><h2>طبقة الشبكة</h2><span class="en">Chapter 8 · Network Layer</span></div>
+    <label class="done"><input type="checkbox" id="d8" data-ch="8"> راجعته</label></div>
+  <p class="one"><b>في جملة:</b> طبقة <bdi>Network</bdi> (<bdi>IPv4</bdi> و<bdi>IPv6</bdi>) تعنون الأجهزة وتوجّه الحزم: بلا اتصال، بأفضل جهد، ومستقلة عن الوسط، والراوتر يختار أطول تطابق في جدول التوجيه.</p>
+
+  <span class="core">Network Layer</span>
+  <ul class="mm">
+    <li><b>أربع عمليات</b><span>Addressing</span><span>Encapsulation</span><span>Routing</span><span>De-encapsulation</span></li>
+    <li><b>خصائص IP</b><span>Connectionless</span><span>Best effort</span><span>Media independent</span></li>
+    <li><b>MTU</b><span>Fragmentation: IPv4 only</span></li>
+    <li><b>ترويسة IPv4</b><span>Version</span><span>DS</span><span>Header checksum</span><span>TTL</span><span>Protocol</span><span>Src / Dst</span></li>
+    <li><b>عيوب IPv4</b><span>Address depletion</span><span>No end-to-end (NAT)</span><span>Complexity</span></li>
+    <li><b>IPv6</b><span>128 bit</span><span>Header 40 bytes</span><span>Extension headers</span><span>No NAT needed</span></li>
+    <li><b>قرار المضيف</b><span>Itself 127.0.0.1 / ::1</span><span>Local</span><span>Remote = gateway</span></li>
+    <li><b>الراوتر</b><span>Longest match</span><span>Connected</span><span>Remote</span><span>Default</span></li>
+  </ul>
+
+  <figure class="fig">
+    <svg viewBox="0 0 360 252" role="img" aria-label="قرار المضيف">
+      <defs><marker id="a8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk" d="M0 0L10 5L0 10z"/></marker></defs>
+      <rect class="bx" x="80" y="6" width="200" height="34" rx="8"/><text x="180" y="28">Packet to Destination IP</text>
+      <line class="ln" x1="180" y1="40" x2="180" y2="64" marker-end="url(#a8)"/>
+      <polygon class="bx2" points="180,66 290,106 180,146 70,106"/>
+      <text x="180" y="104">Same network?</text><text class="s" x="180" y="120">IP + subnet mask</text>
+      <path class="ln" d="M70 106 H90 V168" marker-end="url(#a8)"/><text class="s en" x="64" y="98">Yes</text>
+      <path class="ln" d="M290 106 H270 V168" marker-end="url(#a8)"/><text class="s st" x="296" y="98">No</text>
+      <rect class="bx" x="10" y="170" width="160" height="54" rx="8"/><text x="90" y="192">Local host</text><text class="s" x="90" y="210">dst MAC = that host</text>
+      <rect class="bx" x="190" y="170" width="160" height="54" rx="8"/><text x="270" y="192">Remote host</text><text class="s" x="270" y="210">dst MAC = gateway</text>
+      <text class="s" x="180" y="244">127.0.0.1 / ::1 = itself (loopback)</text>
+    </svg>
+    <figcaption>المضيف يقارن عنوان الوجهة مع عنوانه وقناع الشبكة. المحلي يُرسل مباشرة، والبعيد يذهب إلى البوابة الافتراضية.</figcaption>
+  </figure>
+
+  <div class="tw"><table>
+    <tr><th><bdi>IPv4</bdi></th><th><bdi>IPv6</bdi></th></tr>
+    <tr><td><bdi>Version</bdi> = 0100</td><td><bdi>Version</bdi> = 0110</td></tr>
+    <tr><td><bdi>Differentiated Services</bdi></td><td><bdi>Traffic Class</bdi></td></tr>
+    <tr><td><bdi>TTL</bdi></td><td><bdi>Hop Limit</bdi></td></tr>
+    <tr><td><bdi>Protocol</bdi></td><td><bdi>Next Header</bdi></td></tr>
+    <tr><td><bdi>Header Checksum</bdi> · <bdi>Flags</bdi> · <bdi>Fragment Offset</bdi></td><td>محذوفة لتحسين الأداء</td></tr>
+    <tr><td>لا يوجد</td><td><bdi>Flow Label</bdi> · <bdi>Payload Length</bdi></td></tr>
+  </table></div>
+  <div class="tw"><table>
+    <tr><th>رمز <span class="ltr">show ip route</span></th><th>المعنى</th></tr>
+    <tr><td><span class="ltr">L</span></td><td>عنوان الواجهة المتصلة محلياً</td></tr>
+    <tr><td><span class="ltr">C</span></td><td>شبكة متصلة مباشرة (<bdi>Directly connected</bdi>)</td></tr>
+    <tr><td><span class="ltr">S</span> · <span class="ltr">S*</span></td><td>مسار ثابت · مسار افتراضي (كل أصفار)</td></tr>
+    <tr><td><span class="ltr">O</span> · <span class="ltr">D</span></td><td><bdi>OSPF</bdi> · <bdi>EIGRP</bdi> (مسارات بعيدة ديناميكية)</td></tr>
+  </table></div>
+
+  <div class="parts">
+    <div class="part"><h3>القسم الأول · بروتوكول <bdi>IP</bdi></h3>
+      <p><bdi>IP</bdi> خفيف: لا يؤسس اتصالاً (<bdi>Connectionless</bdi>)، ولا يضمن التسليم (<bdi>Best effort</bdi>)، ولا يهتم بنوع الوسط. إعادة الإرسال والترتيب تتركها لـ <bdi>TCP</bdi>. حجم <bdi>MTU</bdi> تحدده طبقة <bdi>Data Link</bdi>، وفي <bdi>IPv4</bdi> يمكن تجزئة الحزمة (ما يسبب تأخيراً)، بينما <bdi>IPv6</bdi> لا يجزّئ. عيوب <bdi>IPv4</bdi> الثلاثة: نفاد العناوين، وفقدان الاتصال المباشر بسبب <bdi>NAT</bdi>، وتعقيد الشبكة. <bdi>IPv6</bdi> يحل ذلك بعنوان 128 بت وترويسة مبسطة ثابتة 40 بايت، مع ملحقات اختيارية <bdi>Extension headers</bdi> توضع بين الترويسة والحمولة.</p></div>
+    <div class="part"><h3>القسم الثاني · التوجيه</h3>
+      <p>المضيف يبني جدول توجيه خاصاً به (<code>route print</code> أو <code>netstat -r</code>) ويقرر: الوجهة نفسه، أو جهاز محلي، أو جهاز بعيد عبر البوابة الافتراضية. البوابة عنوان راوتر ضمن نفس الشبكة، وبلا بوابة صحيحة لا يغادر الجهاز الـ <bdi>LAN</bdi>. الراوتر يفحص عنوان الوجهة ويبحث في جدول التوجيه عن أطول تطابق. المسارات ثلاثة: متصلة مباشرة تضاف تلقائياً عند تفعيل الواجهة، وبعيدة (ثابتة يدوياً أو ديناميكية من بروتوكول توجيه)، وافتراضية عند عدم وجود تطابق.</p></div>
+  </div>
+
+
+  <details><summary>خصائص <bdi>IP</bdi> الثلاث؟</summary><p><bdi>Connectionless</bdi> و<bdi>Best effort</bdi> و<bdi>Media independent</bdi>.</p></details>
+  <details><summary>ماذا يفعل المضيف إذا كانت الوجهة على شبكة بعيدة؟</summary><p>يرسل الإطار إلى البوابة الافتراضية، والراوتر يتولى التوجيه.</p></details>
+  <details><summary>ما رمز المسار الافتراضي في جدول التوجيه؟</summary><p><code>S*</code>.</p></details>
+  <p class="lk">مرتبط بالتقييم الثالث (السؤال 11) والتقييم الرابع (الأسئلة 16 و18 و20).</p>
+</section>
+<div class="pager" style="--h:250"><a href="chapter7.html">← السابق</a><a href="chapter9.html">التالي →</a></div>
+</div>
+<script>
+(function(){
+  var K="net-guide-done",done=[];
+  try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){done=[]}
+  document.querySelectorAll("input[data-ch]").forEach(function(b){
+    b.checked=done.indexOf(b.dataset.ch)>-1;
+    b.addEventListener("change",function(){
+      var a=[];try{a=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
+      a=a.filter(function(x){return x!==b.dataset.ch});
+      if(b.checked)a.push(b.dataset.ch);
+      try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>أرقام وقواعد تحفظ قبل الامتحان</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" lang="ar">
+<nav class="nav" aria-label="الفصول"><a class="home" href="index.html" style="--h:212">الرئيسية</a><a href="chapter1.html" style="--h:212"><b>1</b><bdi>Networking</bdi></a><a href="chapter2.html" style="--h:188"><b>2</b><bdi>IOS</bdi></a><a href="chapter3.html" style="--h:150"><b>3</b><bdi>Models</bdi></a><a href="chapter4.html" style="--h:30"><b>4</b><bdi>Physical</bdi></a><a href="chapter5.html" style="--h:280"><b>5</b><bdi>Numbers</bdi></a><a href="chapter6.html" style="--h:335"><b>6</b><bdi>Data Link</bdi></a><a href="chapter7.html" style="--h:5"><b>7</b><bdi>Switching</bdi></a><a href="chapter8.html" style="--h:250"><b>8</b><bdi>Network</bdi></a><a href="chapter9.html" style="--h:95"><b>9</b><bdi>ARP</bdi></a><a href="cheat.html" style="--h:212" aria-current="page"><b>★</b><bdi>Cheat</bdi></a></nav>
+<section class="ch sheet" id="sheet" style="--h:212">
+  <h2>أرقام وقواعد تحفظ قبل الامتحان</h2>
+  <div class="tw"><table>
+    <tr><td><bdi>IPv4</bdi></td><td>32 بت، 4 <bdi>octets</bdi></td></tr>
+    <tr><td><bdi>IPv6</bdi></td><td>128 بت = 32 رقم <bdi>hex</bdi> = 8 <bdi>hextets</bdi></td></tr>
+    <tr><td><bdi>MAC</bdi></td><td>48 بت = 12 <bdi>hex</bdi>، منها <bdi>OUI</bdi> = 24 بت</td></tr>
+    <tr><td>إطار <bdi>Ethernet</bdi></td><td>من 64 إلى 1518 بايت</td></tr>
+    <tr><td>ترويسة <bdi>IPv6</bdi></td><td>ثابتة 40 بايت</td></tr>
+    <tr><td>إدخال جدول <bdi>MAC</bdi></td><td>يبقى 5 دقائق افتراضياً</td></tr>
+    <tr><td><bdi>MMF</bdi></td><td>حتى 10 <bdi>Gbps</bdi> لمسافة 550 م</td></tr>
+    <tr><td>خطوط <bdi>VTY</bdi></td><td>من 0 إلى 15</td></tr>
+    <tr><td>اسم الجهاز</td><td>أقل من 64 حرفاً، يبدأ بحرف وينتهي بحرف أو رقم</td></tr>
+    <tr><td><bdi>Broadcast MAC</bdi></td><td><span class="ltr">FF-FF-FF-FF-FF-FF</span></td></tr>
+    <tr><td><bdi>Multicast MAC</bdi></td><td><span class="ltr">01-00-5E</span> لـ <bdi>IPv4</bdi>، و<span class="ltr">33-33</span> لـ <bdi>IPv6</bdi></td></tr>
+    <tr><td><bdi>Loopback</bdi></td><td><span class="ltr">127.0.0.1</span> و<span class="ltr">::1</span></td></tr>
+    <tr><td>رموز الأوامر</td><td><code>&gt;</code> <bdi>User EXEC</bdi>، <code>#</code> <bdi>Privileged EXEC</bdi></td></tr>
+  </table></div>
+  <div class="tw"><table>
+    <tr><th>التقييم</th><th>الفصل في هذا الملف</th></tr>
+    <tr><td>الأول (1–5)</td><td>الفصل 1 بالكامل</td></tr>
+    <tr><td>الثاني (6–10)</td><td>الفصل 5 (السؤال 9) والفصل 3 (السؤال 10). الأسئلة 6 و7 و8 خارج الملف</td></tr>
+    <tr><td>الثالث (11–15)</td><td>الفصل 8 (السؤال 11) والفصل 3 (السؤال 14). الأسئلة 12 و13 و15 خارج الملف</td></tr>
+    <tr><td>الرابع (16–20)</td><td>الفصلان 2 و8</td></tr>
+    <tr><td>الخامس (21–25)</td><td>الفصلان 6 و7</td></tr>
+    <tr><td>السادس إلى التاسع</td><td>فصول لاحقة غير موجودة في الملف (النقل، التطبيقات، <bdi>WAN</bdi> و<bdi>NAT</bdi>، النطاق العريض)</td></tr>
+  </table></div>
+</section>
+<div class="pager" style="--h:212"><a href="chapter9.html">← السابق</a><a href="index.html">الرئيسية ↑</a></div>
+</div>
+<script>
+(function(){
+  var K="net-guide-done",done=[];
+  try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){done=[]}
+  document.querySelectorAll("input[data-ch]").forEach(function(b){
+    b.checked=done.indexOf(b.dataset.ch)>-1;
+    b.addEventListener("change",function(){
+      var a=[];try{a=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
+      a=a.filter(function(x){return x!==b.dataset.ch});
+      if(b.checked)a.push(b.dataset.ch);
+      try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>

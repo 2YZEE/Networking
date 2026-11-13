@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>الفصل 1 · الشبكات اليوم</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" lang="ar">
+<nav class="nav" aria-label="الفصول"><a class="home" href="index.html" style="--h:212">الرئيسية</a><a href="chapter1.html" style="--h:212" aria-current="page"><b>1</b><bdi>Networking</bdi></a><a href="chapter2.html" style="--h:188"><b>2</b><bdi>IOS</bdi></a><a href="chapter3.html" style="--h:150"><b>3</b><bdi>Models</bdi></a><a href="chapter4.html" style="--h:30"><b>4</b><bdi>Physical</bdi></a><a href="chapter5.html" style="--h:280"><b>5</b><bdi>Numbers</bdi></a><a href="chapter6.html" style="--h:335"><b>6</b><bdi>Data Link</bdi></a><a href="chapter7.html" style="--h:5"><b>7</b><bdi>Switching</bdi></a><a href="chapter8.html" style="--h:250"><b>8</b><bdi>Network</bdi></a><a href="chapter9.html" style="--h:95"><b>9</b><bdi>ARP</bdi></a><a href="cheat.html" style="--h:212"><b>★</b><bdi>Cheat</bdi></a></nav>
+<section class="ch" id="ch1" style="--h:212">
+  <div class="chh"><span class="no">1</span><div><h2>الشبكات اليوم</h2><span class="en">Chapter 1 · Networking Today</span></div>
+    <label class="done"><input type="checkbox" id="d1" data-ch="1"> راجعته</label></div>
+  <p class="one"><b>في جملة:</b> الشبكة تربط الأجهزة الطرفية عبر أجهزة وسيطة ووسائط نقل، وتُبنى لتحقق أربعة أهداف: تحمّل الأعطال، وقابلية التوسع، وجودة الخدمة، والأمان.</p>
+
+  <span class="core">Networking Today</span>
+  <ul class="mm">
+    <li><b>أدوار المضيف</b><span>Server</span><span>Client</span><span>Peer-to-Peer</span></li>
+    <li><b>الأجهزة</b><span>End device</span><span>Intermediary: Switch · Router · AP · Firewall</span></li>
+    <li><b>الوسائط</b><span>Copper = electrical</span><span>Fiber = light</span><span>Wireless = EM waves</span></li>
+    <li><b>أنواع الشبكات</b><span>LAN</span><span>WAN</span><span>Internet</span><span>Intranet</span><span>Extranet</span></li>
+    <li><b>الاتصال بالإنترنت</b><span>Cable</span><span>DSL</span><span>Cellular</span><span>Satellite</span><span>Dial-up</span><span>Leased line</span><span>Metro Ethernet</span></li>
+    <li><b>أربعة متطلبات</b><span>Fault tolerance</span><span>Scalability</span><span>QoS</span><span>Security</span></li>
+    <li><b>اتجاهات حديثة</b><span>BYOD</span><span>Collaboration</span><span>Video</span><span>Cloud</span></li>
+  </ul>
+
+  <figure class="fig">
+    <svg viewBox="0 0 360 226" role="img" aria-label="مثلث CIA">
+      <polygon class="bx" points="180,62 90,160 270,160"/>
+      <circle class="hl" cx="180" cy="62" r="9"/><circle class="hl" cx="90" cy="160" r="9"/><circle class="hl" cx="270" cy="160" r="9"/>
+      <text x="180" y="18">Confidentiality</text><text class="s ar" x="180" y="37">السرية · لا يقرأ إلا المقصودون</text>
+      <text x="90" y="188">Integrity</text><text class="s ar" x="90" y="206">السلامة · البيانات لا تتغير</text>
+      <text x="270" y="188">Availability</text><text class="s ar" x="270" y="206">التوفر · وصول عند الحاجة</text>
+      <text x="180" y="112">Network</text><text x="180" y="129">Security</text><text class="s ar" x="180" y="148">أمن الشبكة</text>
+    </svg>
+    <figcaption>أهداف أمن الشبكة الثلاثة، وتُعرف اختصاراً بـ <bdi>CIA</bdi>. كلمة المرور القوية تخدم السرية.</figcaption>
+  </figure>
+
+  <div class="tw"><table>
+    <tr><th></th><th><bdi>LAN</bdi></th><th><bdi>WAN</bdi></th></tr>
+    <tr><td>المساحة</td><td>صغيرة</td><td>واسعة</td></tr>
+    <tr><td>من يديرها</td><td>جهة أو فرد واحد</td><td>مزود خدمة أو أكثر</td></tr>
+    <tr><td>السرعة</td><td>عالية داخلياً</td><td>أبطأ بين الشبكات</td></tr>
+  </table></div>
+
+  <div class="parts">
+    <div class="part"><h3>القسم الأول · مكونات الشبكة وأنواعها</h3>
+      <p>كل جهاز في الشبكة مضيف: <bdi>Server</bdi> يقدم الخدمة (بريد، ويب، ملفات)، و<bdi>Client</bdi> يطلبها. شبكة <bdi>Peer-to-Peer</bdi> سهلة ورخيصة لكنها بلا إدارة مركزية وضعيفة الأمان وغير قابلة للتوسع. الأجهزة الطرفية تنشئ البيانات وتستقبلها، والوسيطة تعيد بثها وتحتفظ بالمسارات وتبلغ عن الأخطاء. الإنترنت مجموعة عالمية من الشبكات لا يملكها أحد، أما <bdi>Intranet</bdi> فخاصة بالمنظمة، و<bdi>Extranet</bdi> تمنح جهة خارجية وصولاً مؤمّناً. الشبكة المتقاربة <bdi>Converged</bdi> تنقل البيانات والصوت والفيديو على بنية واحدة.</p></div>
+    <div class="part"><h3>القسم الثاني · المتطلبات والاتجاهات</h3>
+      <p>تحمّل الأعطال يعتمد على تعدد المسارات وتبديل الحزم <bdi>Packet switching</bdi>، بعكس الدوائر المخصصة. القابلية للتوسع تأتي من الالتزام بالمعايير. <bdi>QoS</bdi> تضمن وصول الصوت والفيديو بلا تقطع. الأمان نوعان: أمان البنية، وأمان المعلومات. التهديدات خارجية (فيروسات، حجب خدمة، سرقة هوية) وداخلية (أجهزة مفقودة، سوء استخدام). في البيت: مضاد فيروسات وجدار ناري. السحابة ثلاثة أنواع: <bdi>Public</bdi> و<bdi>Private</bdi> و<bdi>Hybrid</bdi>.</p></div>
+  </div>
+
+
+  <details><summary>ما الفرق بين <bdi>End device</bdi> و<bdi>Intermediary device</bdi>؟</summary><p>الطرفي هو مصدر الرسالة أو وجهتها (حاسوب، خادم). الوسيط يربط الأطراف ويدير تدفق البيانات (<bdi>Switch</bdi>, <bdi>Router</bdi>, <bdi>AP</bdi>, <bdi>Firewall</bdi>).</p></details>
+  <details><summary>لماذا يحقق <bdi>Packet switching</bdi> تحمّل الأعطال؟</summary><p>الرسالة تُقسّم إلى حزم، ويمكن لكل حزمة أن تسلك مساراً مختلفاً، فلا يتوقف الاتصال بعطل مسار واحد.</p></details>
+  <details><summary>أنواع السحابة الثلاثة؟</summary><p><bdi>Public</bdi> و<bdi>Private</bdi> و<bdi>Hybrid</bdi>.</p></details>
+  <p class="lk">مرتبط بالتقييم الأول (الأسئلة 1 إلى 5)، والسؤال 2 من هذا الفصل أيضاً.</p>
+</section>
+<div class="pager" style="--h:212"><span></span><a href="chapter2.html">التالي →</a></div>
+</div>
+<script>
+(function(){
+  var K="net-guide-done",done=[];
+  try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){done=[]}
+  document.querySelectorAll("input[data-ch]").forEach(function(b){
+    b.checked=done.indexOf(b.dataset.ch)>-1;
+    b.addEventListener("change",function(){
+      var a=[];try{a=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
+      a=a.filter(function(x){return x!==b.dataset.ch});
+      if(b.checked)a.push(b.dataset.ch);
+      try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>الفصل 6 · طبقة ربط البيانات</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" lang="ar">
+<nav class="nav" aria-label="الفصول"><a class="home" href="index.html" style="--h:212">الرئيسية</a><a href="chapter1.html" style="--h:212"><b>1</b><bdi>Networking</bdi></a><a href="chapter2.html" style="--h:188"><b>2</b><bdi>IOS</bdi></a><a href="chapter3.html" style="--h:150"><b>3</b><bdi>Models</bdi></a><a href="chapter4.html" style="--h:30"><b>4</b><bdi>Physical</bdi></a><a href="chapter5.html" style="--h:280"><b>5</b><bdi>Numbers</bdi></a><a href="chapter6.html" style="--h:335" aria-current="page"><b>6</b><bdi>Data Link</bdi></a><a href="chapter7.html" style="--h:5"><b>7</b><bdi>Switching</bdi></a><a href="chapter8.html" style="--h:250"><b>8</b><bdi>Network</bdi></a><a href="chapter9.html" style="--h:95"><b>9</b><bdi>ARP</bdi></a><a href="cheat.html" style="--h:212"><b>★</b><bdi>Cheat</bdi></a></nav>
+<section class="ch" id="ch6" style="--h:335">
+  <div class="chh"><span class="no">6</span><div><h2>طبقة ربط البيانات</h2><span class="en">Chapter 6 · Data Link Layer</span></div>
+    <label class="done"><input type="checkbox" id="d6" data-ch="6"> راجعته</label></div>
+  <p class="one"><b>في جملة:</b> طبقة <bdi>Data Link</bdi> تغلّف الـ <bdi>Packet</bdi> في <bdi>Frame</bdi> وتسلمه من <bdi>NIC</bdi> إلى <bdi>NIC</bdi> على الوصلة نفسها، وتكشف الأخطاء، وتنظّم من يحق له الإرسال.</p>
+
+  <span class="core">Data Link Layer</span>
+  <ul class="mm">
+    <li><b>الوظيفة</b><span>Frames the packet</span><span>NIC to NIC</span><span>Error detection</span></li>
+    <li><b>الطبقتان الفرعيتان</b><span>LLC: talks to upper layers</span><span>MAC: encapsulation + media access</span></li>
+    <li><b>الراوتر في كل قفزة</b><span>Accept frame</span><span>De-encapsulate</span><span>Re-encapsulate</span><span>Forward</span></li>
+    <li><b>طوبولوجيا WAN</b><span>Point-to-point</span><span>Hub and spoke</span><span>Mesh</span></li>
+    <li><b>طوبولوجيا LAN</b><span>Star</span><span>Extended star</span><span>Bus (legacy)</span><span>Ring (legacy)</span></li>
+    <li><b>الازدواج</b><span>Half-duplex</span><span>Full-duplex</span></li>
+    <li><b>التحكم بالوصول</b><span>CSMA/CD</span><span>CSMA/CA</span><span>Token Ring (controlled)</span></li>
+    <li><b>الإطار</b><span>Header</span><span>Data</span><span>Trailer (FCS)</span></li>
+  </ul>
+
+  <figure class="fig">
+    <svg viewBox="0 0 360 124" role="img" aria-label="طوبولوجيا WAN">
+      <line class="ln" x1="20" y1="50" x2="100" y2="50"/>
+      <circle class="hl" cx="20" cy="50" r="7"/><circle class="hl" cx="100" cy="50" r="7"/>
+      <line class="ln" x1="180" y1="50" x2="140" y2="20"/><line class="ln" x1="180" y1="50" x2="220" y2="20"/><line class="ln" x1="180" y1="50" x2="140" y2="80"/><line class="ln" x1="180" y1="50" x2="220" y2="80"/>
+      <circle class="hl" cx="180" cy="50" r="9"/><circle class="bx" cx="140" cy="20" r="7"/><circle class="bx" cx="220" cy="20" r="7"/><circle class="bx" cx="140" cy="80" r="7"/><circle class="bx" cx="220" cy="80" r="7"/>
+      <line class="ln" x1="270" y1="20" x2="330" y2="20"/><line class="ln" x1="270" y1="80" x2="330" y2="80"/><line class="ln" x1="270" y1="20" x2="270" y2="80"/><line class="ln" x1="330" y1="20" x2="330" y2="80"/><line class="ln" x1="270" y1="20" x2="330" y2="80"/><line class="ln" x1="330" y1="20" x2="270" y2="80"/>
+      <circle class="hl" cx="270" cy="20" r="7"/><circle class="hl" cx="330" cy="20" r="7"/><circle class="hl" cx="270" cy="80" r="7"/><circle class="hl" cx="330" cy="80" r="7"/>
+      <text x="60" y="112">Point-to-point</text><text x="180" y="112">Hub and spoke</text><text x="300" y="112">Mesh</text>
+    </svg>
+    <figcaption><bdi>Mesh</bdi>: كل طرف متصل بكل الأطراف، فهو الأعلى توفراً والأعلى كلفة.</figcaption>
+  </figure>
+
+  <div class="tw"><table>
+    <tr><th>حقل الإطار</th><th>وظيفته</th></tr>
+    <tr><td><bdi>Frame Start</bdi> / <bdi>Stop</bdi></td><td>بداية ونهاية الإطار</td></tr>
+    <tr><td><bdi>Addressing</bdi></td><td>المصدر والوجهة (محلي)</td></tr>
+    <tr><td><bdi>Type</bdi></td><td>بروتوكول الطبقة 3 المغلَّف</td></tr>
+    <tr><td><bdi>Control</bdi></td><td>خدمات التحكم بالتدفق</td></tr>
+    <tr><td><bdi>Data</bdi></td><td>الحمولة</td></tr>
+    <tr><td><bdi>Error Detection</bdi></td><td>اكتشاف أخطاء النقل (في الـ <bdi>Trailer</bdi>)</td></tr>
+  </table></div>
+
+  <div class="parts">
+    <div class="part"><h3>خلاصة الفصل</h3>
+      <p>طبقة <bdi>Data Link</bdi> تتيح للطبقات العليا الوصول إلى الوسط، وتحوّل <bdi>Packets</bdi> إلى <bdi>Frames</bdi>، وترفض الإطارات التالفة. تنظمها منظمات معايير (<bdi>IEEE</bdi> و<bdi>ITU</bdi> و<bdi>ISO</bdi> و<bdi>ANSI</bdi>). الطوبولوجيا الفيزيائية تبيّن التوصيل المادي، والمنطقية تبيّن العناوين والاتصالات الافتراضية. في الـ <bdi>LAN</bdi> الأشهر نجمي أو نجمي ممتد: سهل التركيب والتوسع والفحص. الازدواج: <bdi>Half</bdi> يرسل جهاز واحد في المرة (<bdi>WLAN</bdi>)، و<bdi>Full</bdi> يرسل ويستقبل معاً (سويتشات <bdi>Ethernet</bdi>) ولا يحتاج تحكماً بالوصول. التحكم بالوصول إما تنافسي (<bdi>CSMA/CD</bdi> في <bdi>Ethernet</bdi> القديم: اكتشف التصادم وانتظر عشوائياً وأعد الإرسال، و<bdi>CSMA/CA</bdi> في <bdi>Wi-Fi</bdi>: أعلن مدة الإرسال لتجنب التصادم)، وإما مضبوط (<bdi>Token Ring</bdi>). عنوان الطبقة 2 محلي ويتغير عند كل جهاز يمرر الإطار. بروتوكولات الربط: <bdi>Ethernet</bdi> و802.11 و<bdi>PPP</bdi> و<bdi>HDLC</bdi> و<bdi>Frame Relay</bdi>.</p></div>
+  </div>
+
+
+  <details><summary>ما وظائف الراوتر الأربع عند كل قفزة؟</summary><p>يستقبل الإطار، يفك تغليفه، يعيد تغليف الحزمة في إطار جديد، ثم يرسله إلى الوسط التالي.</p></details>
+  <details><summary>الفرق بين <bdi>CSMA/CD</bdi> و<bdi>CSMA/CA</bdi>؟</summary><p>الأولى تكتشف التصادم بعد حدوثه (<bdi>Ethernet</bdi> القديم)، والثانية تتجنبه بإعلان مدة الإرسال مسبقاً (<bdi>Wi-Fi</bdi>).</p></details>
+  <details><summary>أبسط وأشهر طوبولوجيا <bdi>WAN</bdi>؟</summary><p><bdi>Point-to-point</bdi>.</p></details>
+  <p class="lk">مرتبط بالتقييم الخامس (الأسئلة 22 إلى 25).</p>
+</section>
+<div class="pager" style="--h:335"><a href="chapter5.html">← السابق</a><a href="chapter7.html">التالي →</a></div>
+</div>
+<script>
+(function(){
+  var K="net-guide-done",done=[];
+  try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){done=[]}
+  document.querySelectorAll("input[data-ch]").forEach(function(b){
+    b.checked=done.indexOf(b.dataset.ch)>-1;
+    b.addEventListener("change",function(){
+      var a=[];try{a=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
+      a=a.filter(function(x){return x!==b.dataset.ch});
+      if(b.checked)a.push(b.dataset.ch);
+      try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>

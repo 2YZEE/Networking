@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>دليل مذاكرة أساسيات الشبكات</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" lang="ar">
+<header>
+  <h1>دليل مذاكرة أساسيات الشبكات</h1>
+  <p class="lead">الفصول 1 إلى 9 من ملف المنهج. لكل فصل صفحة مستقلة فيها جملة تلخصه، وخريطة ذهنية، وملخص لكل قسم، وأسئلة استرجاع.</p>
+  <p class="prog">راجعت <span id="cnt">0</span> من 9</p>
+</header>
+<ul class="cards">
+<li><a href="chapter1.html" style="--h:212"><span class="no">1</span><span><b>الشبكات اليوم</b><small>Networking Today</small></span><span class="ok" data-ok="1"></span></a></li>
+<li><a href="chapter2.html" style="--h:188"><span class="no">2</span><span><b>إعداد السويتش والأجهزة الطرفية</b><small>Basic Switch and End Device Configuration</small></span><span class="ok" data-ok="2"></span></a></li>
+<li><a href="chapter3.html" style="--h:150"><span class="no">3</span><span><b>البروتوكولات والنماذج</b><small>Protocols and Models</small></span><span class="ok" data-ok="3"></span></a></li>
+<li><a href="chapter4.html" style="--h:30"><span class="no">4</span><span><b>الطبقة الفيزيائية</b><small>Physical Layer</small></span><span class="ok" data-ok="4"></span></a></li>
+<li><a href="chapter5.html" style="--h:280"><span class="no">5</span><span><b>أنظمة العدّ</b><small>Number Systems</small></span><span class="ok" data-ok="5"></span></a></li>
+<li><a href="chapter6.html" style="--h:335"><span class="no">6</span><span><b>طبقة ربط البيانات</b><small>Data Link Layer</small></span><span class="ok" data-ok="6"></span></a></li>
+<li><a href="chapter7.html" style="--h:5"><span class="no">7</span><span><b>تبديل Ethernet</b><small>Ethernet Switching</small></span><span class="ok" data-ok="7"></span></a></li>
+<li><a href="chapter8.html" style="--h:250"><span class="no">8</span><span><b>طبقة الشبكة</b><small>Network Layer</small></span><span class="ok" data-ok="8"></span></a></li>
+<li><a href="chapter9.html" style="--h:95"><span class="no">9</span><span><b>ترجمة العناوين</b><small>Address Resolution</small></span><span class="ok" data-ok="9"></span></a></li>
+<li><a href="cheat.html" style="--h:212"><span class="no">★</span><span><b>أرقام وقواعد تحفظ قبل الامتحان</b><small>Cheat sheet</small></span></a></li>
+</ul>
+</div>
+<script>
+(function(){
+  var done=[];try{done=JSON.parse(localStorage.getItem("net-guide-done")||"[]")}catch(e){}
+  var n=0;document.querySelectorAll("[data-ok]").forEach(function(s){if(done.indexOf(s.dataset.ok)>-1){s.textContent="تمت المراجعة ✓";n++}});
+  document.getElementById("cnt").textContent=n;
+})();
+</script>
+</body>
+</html>

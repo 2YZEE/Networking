@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>الفصل 9 · ترجمة العناوين</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" lang="ar">
+<nav class="nav" aria-label="الفصول"><a class="home" href="index.html" style="--h:212">الرئيسية</a><a href="chapter1.html" style="--h:212"><b>1</b><bdi>Networking</bdi></a><a href="chapter2.html" style="--h:188"><b>2</b><bdi>IOS</bdi></a><a href="chapter3.html" style="--h:150"><b>3</b><bdi>Models</bdi></a><a href="chapter4.html" style="--h:30"><b>4</b><bdi>Physical</bdi></a><a href="chapter5.html" style="--h:280"><b>5</b><bdi>Numbers</bdi></a><a href="chapter6.html" style="--h:335"><b>6</b><bdi>Data Link</bdi></a><a href="chapter7.html" style="--h:5"><b>7</b><bdi>Switching</bdi></a><a href="chapter8.html" style="--h:250"><b>8</b><bdi>Network</bdi></a><a href="chapter9.html" style="--h:95" aria-current="page"><b>9</b><bdi>ARP</bdi></a><a href="cheat.html" style="--h:212"><b>★</b><bdi>Cheat</bdi></a></nav>
+<section class="ch" id="ch9" style="--h:95">
+  <div class="chh"><span class="no">9</span><div><h2>ترجمة العناوين</h2><span class="en">Chapter 9 · Address Resolution</span></div>
+    <label class="done"><input type="checkbox" id="d9" data-ch="9"> راجعته</label></div>
+  <p class="one"><b>في جملة:</b> <bdi>IP</bdi> يحدد الوجهة النهائية لكن الإطار يحتاج <bdi>MAC</bdi>، فيحوّل <bdi>ARP</bdi> (في <bdi>IPv4</bdi>) و<bdi>Neighbor Discovery</bdi> (في <bdi>IPv6</bdi>) العنوان المنطقي إلى <bdi>MAC</bdi>.</p>
+
+  <span class="core">Address Resolution</span>
+  <ul class="mm">
+    <li><b>عنوانان</b><span>MAC (Layer 2)</span><span>IP (Layer 3)</span></li>
+    <li><b>نفس الشبكة</b><span>dst MAC = destination device</span></li>
+    <li><b>شبكة بعيدة</b><span>dst MAC = default gateway</span></li>
+    <li><b>ARP</b><span>Request = broadcast</span><span>Reply = unicast</span><span>ARP table</span></li>
+    <li><b>الأوامر</b><span>show ip arp (router)</span><span>arp -a (Windows)</span></li>
+    <li><b>مشاكل ARP</b><span>Broadcast load</span><span>Spoofing / poisoning</span></li>
+    <li><b>IPv6 ND</b><span>NS</span><span>NA</span><span>RS</span><span>RA</span><span>Redirect</span></li>
+  </ul>
+
+  <figure class="fig">
+    <svg viewBox="0 0 360 214" role="img" aria-label="تبادل ARP">
+      <defs><marker id="a9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk" d="M0 0L10 5L0 10z"/></marker></defs>
+      <rect class="bx" x="20" y="6" width="100" height="32" rx="8"/><text x="70" y="27">PC1</text>
+      <rect class="bx" x="240" y="6" width="100" height="32" rx="8"/><text x="290" y="27">PC2</text>
+      <line class="ln dash" x1="70" y1="38" x2="70" y2="176"/><line class="ln dash" x1="290" y1="38" x2="290" y2="176"/>
+      <text x="180" y="60">1) ARP Request</text>
+      <line class="ac" x1="70" y1="68" x2="288" y2="68" marker-end="url(#a9)"/>
+      <text class="s" x="180" y="84">broadcast: FF-FF-FF-FF-FF-FF</text>
+      <text class="s" x="180" y="98">Who has 192.168.10.11?</text>
+      <text x="180" y="128">2) ARP Reply</text>
+      <line class="ac" x1="290" y1="136" x2="72" y2="136" marker-end="url(#a9)"/>
+      <text class="s" x="180" y="152">unicast: 192.168.10.11 is at 55-55-55</text>
+      <text class="s" x="180" y="200">PC1 stores the pair in its ARP table, then sends the frame</text>
+    </svg>
+    <figcaption>إذا كانت الوجهة بعيدة، يبحث الجهاز عن <bdi>MAC</bdi> البوابة الافتراضية بدل <bdi>MAC</bdi> الوجهة.</figcaption>
+  </figure>
+
+  <div class="parts">
+    <div class="part"><h3>خلاصة الفصل</h3>
+      <p>لكل جهاز على <bdi>Ethernet</bdi> عنوانان: <bdi>MAC</bdi> (الطبقة 2) لتوصيل الإطار على الشبكة نفسها، و<bdi>IP</bdi> (الطبقة 3) لتوصيل الحزمة إلى الوجهة النهائية. على نفس الشبكة تكون وجهة الإطار هي <bdi>MAC</bdi> الجهاز، وعلى شبكة بعيدة تكون <bdi>MAC</bdi> البوابة. يؤدي <bdi>ARP</bdi> وظيفتين: ترجمة <bdi>IPv4</bdi> إلى <bdi>MAC</bdi>، وحفظ الأزواج في <bdi>ARP table</bdi>. إذا لم يجد الجهاز المدخل يرسل <bdi>ARP Request</bdi> كـ <bdi>Broadcast</bdi>، فيرد صاحب العنوان بـ <bdi>ARP Reply Unicast</bdi>. المدخلات مؤقتة وتُحذف بعد انتهاء مؤقت يختلف باختلاف نظام التشغيل، ويمكن حذفها يدوياً. أمر العرض على الراوتر <code>show ip arp</code> وعلى ويندوز <code>arp -a</code>. من المشاكل: ازدحام من كثرة الـ <bdi>Broadcast</bdi>، و<bdi>ARP spoofing</bdi> حيث يرسل مهاجم رداً مزوراً (<bdi>ARP poisoning</bdi>). سويتشات المؤسسات تملك تقنيات حماية. في <bdi>IPv6</bdi> يوفر <bdi>Neighbor Discovery</bdi> ترجمة العناوين واكتشاف الراوتر وإعادة التوجيه عبر خمس رسائل <bdi>ICMPv6</bdi>: <bdi>NS</bdi> و<bdi>NA</bdi> بين الأجهزة (مثل <bdi>ARP</bdi>)، و<bdi>RS</bdi> و<bdi>RA</bdi> بين الجهاز والراوتر، و<bdi>Redirect</bdi> لاختيار قفزة أفضل.</p></div>
+  </div>
+
+
+  <details><summary>لماذا نحتاج <bdi>ARP</bdi>؟</summary><p>لأن الإطار يحتاج <bdi>MAC</bdi> وجهة، والمضيف لا يعرف عادة إلا عنوان <bdi>IP</bdi>.</p></details>
+  <details><summary>إذا كانت الوجهة على شبكة أخرى، عن أي عنوان يبحث الجهاز في <bdi>ARP table</bdi>؟</summary><p>عن عنوان <bdi>IP</bdi> للبوابة الافتراضية، فيستخدم <bdi>MAC</bdi> الخاص بها.</p></details>
+  <details><summary>ما رسائل <bdi>ICMPv6</bdi> الخمس في <bdi>Neighbor Discovery</bdi>؟</summary><p><bdi>Neighbor Solicitation</bdi> و<bdi>Neighbor Advertisement</bdi> و<bdi>Router Solicitation</bdi> و<bdi>Router Advertisement</bdi> و<bdi>Redirect</bdi>.</p></details>
+  <p class="lk">لا أسئلة مباشرة في التقييمات التسعة، لكن الفصل جزء من المنهج.</p>
+</section>
+<div class="pager" style="--h:95"><a href="chapter8.html">← السابق</a><a href="cheat.html">التالي →</a></div>
+</div>
+<script>
+(function(){
+  var K="net-guide-done",done=[];
+  try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){done=[]}
+  document.querySelectorAll("input[data-ch]").forEach(function(b){
+    b.checked=done.indexOf(b.dataset.ch)>-1;
+    b.addEventListener("change",function(){
+      var a=[];try{a=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
+      a=a.filter(function(x){return x!==b.dataset.ch});
+      if(b.checked)a.push(b.dataset.ch);
+      try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>

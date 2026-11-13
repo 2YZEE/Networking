@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>الفصل 7 · تبديل Ethernet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" lang="ar">
+<nav class="nav" aria-label="الفصول"><a class="home" href="index.html" style="--h:212">الرئيسية</a><a href="chapter1.html" style="--h:212"><b>1</b><bdi>Networking</bdi></a><a href="chapter2.html" style="--h:188"><b>2</b><bdi>IOS</bdi></a><a href="chapter3.html" style="--h:150"><b>3</b><bdi>Models</bdi></a><a href="chapter4.html" style="--h:30"><b>4</b><bdi>Physical</bdi></a><a href="chapter5.html" style="--h:280"><b>5</b><bdi>Numbers</bdi></a><a href="chapter6.html" style="--h:335"><b>6</b><bdi>Data Link</bdi></a><a href="chapter7.html" style="--h:5" aria-current="page"><b>7</b><bdi>Switching</bdi></a><a href="chapter8.html" style="--h:250"><b>8</b><bdi>Network</bdi></a><a href="chapter9.html" style="--h:95"><b>9</b><bdi>ARP</bdi></a><a href="cheat.html" style="--h:212"><b>★</b><bdi>Cheat</bdi></a></nav>
+<section class="ch" id="ch7" style="--h:5">
+  <div class="chh"><span class="no">7</span><div><h2>تبديل <bdi>Ethernet</bdi></h2><span class="en">Chapter 7 · Ethernet Switching</span></div>
+    <label class="done"><input type="checkbox" id="d7" data-ch="7"> راجعته</label></div>
+  <p class="one"><b>في جملة:</b> السويتش يتعلم عناوين <bdi>MAC</bdi> المصدر ويحوّل بحسب <bdi>MAC</bdi> الوجهة، وإذا لم يعرف الوجهة يغمر (<bdi>Flood</bdi>) كل المنافذ ما عدا الواردة.</p>
+
+  <span class="core">Ethernet Switching</span>
+  <ul class="mm">
+    <li><b>الطبقتان الفرعيتان</b><span>LLC 802.2</span><span>MAC 802.3</span></li>
+    <li><b>الإطار</b><span>64–1518 bytes</span><span>FCS</span><span>Runt &lt; 64</span><span>Jumbo &gt; 1500 data</span></li>
+    <li><b>عنوان MAC</b><span>48 bit · 12 hex</span><span>OUI 24 bit + vendor value</span></li>
+    <li><b>أنواع العناوين</b><span>Unicast</span><span>Broadcast FF-FF-FF-FF-FF-FF</span><span>Multicast 01-00-5E / 33-33</span></li>
+    <li><b>جدول MAC</b><span>Learn = source</span><span>Forward = destination</span><span>Filter</span><span>Flood unknown unicast</span><span>Aging 5 min</span></li>
+    <li><b>طرق التحويل</b><span>Store-and-forward</span><span>Cut-through: fast-forward</span><span>Cut-through: fragment-free</span></li>
+    <li><b>المخزن المؤقت</b><span>Port-based</span><span>Shared memory</span></li>
+    <li><b>إعدادات المنفذ</b><span>Speed</span><span>Duplex</span><span>Auto-negotiation</span><span>Duplex mismatch</span></li>
+  </ul>
+
+  <figure class="fig">
+    <svg viewBox="0 0 360 238" role="img" aria-label="تعلم السويتش">
+      <defs><marker id="a7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk" d="M0 0L10 5L0 10z"/></marker></defs>
+      <rect class="bx2" x="60" y="6" width="240" height="76" rx="8"/>
+      <text x="180" y="23">MAC address table</text>
+      <text class="s" x="130" y="40">MAC</text><text class="s" x="230" y="40">Port</text>
+      <text class="m" x="130" y="58">AA</text><text class="m" x="230" y="58">F0/1</text>
+      <text class="m" x="130" y="74">BB</text><text class="m" x="230" y="74">F0/2</text>
+      <rect class="bx" x="110" y="98" width="140" height="36" rx="8"/><text x="180" y="121">Switch</text>
+      <path class="ac" d="M150 134 L60 192"/>
+      <path class="ac dash" d="M180 134 L180 190" marker-end="url(#a7)"/>
+      <path class="ac dash" d="M210 134 L300 190" marker-end="url(#a7)"/>
+      <text class="m" x="86" y="160">F0/1</text><text class="m st" x="190" y="166">F0/2</text><text class="m" x="272" y="160">F0/3</text>
+      <rect class="bx2" x="20" y="192" width="80" height="38" rx="6"/><text x="60" y="208">PC-A</text><text class="s" x="60" y="222">AA</text>
+      <rect class="bx2" x="140" y="192" width="80" height="38" rx="6"/><text x="180" y="208">PC-B</text><text class="s" x="180" y="222">BB</text>
+      <rect class="bx2" x="260" y="192" width="80" height="38" rx="6"/><text x="300" y="208">PC-C</text><text class="s" x="300" y="222">CC</text>
+    </svg>
+    <figcaption>الخط المتصل: إطار <bdi>A</bdi> إلى <bdi>B</bdi> يدخل <bdi>F0/1</bdi> فيتعلم السويتش <bdi>AA</bdi>. الخطوط المتقطعة: <bdi>BB</bdi> غير معروف بعد، فيُغمر الإطار إلى <bdi>F0/2</bdi> و<bdi>F0/3</bdi>. عندما يرد <bdi>B</bdi>، يتعلم <bdi>BB</bdi> ثم يرسل الرد إلى <bdi>F0/1</bdi> فقط.</figcaption>
+  </figure>
+
+  <div class="bar" aria-label="حقول إطار Ethernet"><span>Preamble 7</span><span>SFD 1</span><span>Dst MAC 6</span><span>Src MAC 6</span><span>Type 2</span><span>Data 46–1500</span><span>FCS 4</span></div>
+  <p class="lk" style="margin-top:0">الأطوال بالبايت. حجم الإطار من <bdi>Dst MAC</bdi> إلى <bdi>FCS</bdi> هو 64 إلى 1518، و<bdi>Preamble</bdi> و<bdi>SFD</bdi> لا يُحسبان.</p>
+
+  <div class="parts">
+    <div class="part"><h3>خلاصة الفصل</h3>
+      <p>طبقة <bdi>MAC</bdi> في <bdi>Ethernet</bdi> مسؤولة عن شكل الإطار، والعنونة من <bdi>NIC</bdi> إلى <bdi>NIC</bdi>، وكشف الأخطاء بـ <bdi>FCS</bdi>. إطار أقل من 64 بايت (<bdi>runt</bdi>) يُهمل، وإطار فوق 1500 بايت بيانات يسمى <bdi>jumbo</bdi> ويدعمه معظم <bdi>Fast</bdi> و<bdi>Gigabit Ethernet</bdi>. عنوان <bdi>MAC</bdi> فريد من 48 بتاً: ستة أرقام <bdi>hex</bdi> تخص المصنّع (<bdi>OUI</bdi>) وستة يعطيها المصنّع. المصدر دائماً <bdi>Unicast</bdi>. الـ <bdi>Broadcast</bdi> يُستقبل عند كل الأجهزة ويُغمر في السويتش ولا يعبر الراوتر. تحويل عنوان <bdi>IPv4</bdi> إلى <bdi>MAC</bdi> يتم بـ <bdi>ARP</bdi>، وعنوان <bdi>IPv6</bdi> بـ <bdi>Neighbor Discovery</bdi>. السويتش بلا إدراك للبيانات: يقرر من <bdi>MAC</bdi> فقط. عند التشغيل جدول <bdi>MAC</bdi> فارغ، يتعلم من المصدر ويحذف الخامل بعد 5 دقائق. <bdi>Store-and-forward</bdi> يستقبل الإطار كاملاً ويفحص <bdi>CRC</bdi> (ويلزم لتحليل <bdi>QoS</bdi>)، و<bdi>Cut-through</bdi> أسرع: <bdi>Fast-forward</bdi> يقرأ الوجهة فقط (أقل زمن وقد يمرر إطاراً تالفاً)، و<bdi>Fragment-free</bdi> يفحص أول 64 بايت. <bdi>Duplex mismatch</bdi> سبب شائع لضعف الأداء على 10/100، و<bdi>Gigabit</bdi> يعمل <bdi>Full-duplex</bdi> فقط.</p></div>
+  </div>
+
+
+  <details><summary>جدول <bdi>MAC</bdi> فارغ ووصل أول إطار، ماذا يحدث؟</summary><p>يتعلم <bdi>MAC</bdi> المصدر مع رقم المنفذ، ويغمر الإطار إلى كل المنافذ الأخرى لأن الوجهة غير معروفة.</p></details>
+  <details><summary>أي طريقة تحويل لها أقل زمن تأخير؟</summary><p><bdi>Fast-forward</bdi> (من نوع <bdi>Cut-through</bdi>).</p></details>
+  <details><summary>أصغر وأكبر حجم لإطار <bdi>Ethernet</bdi>؟</summary><p>64 و1518 بايت.</p></details>
+  <p class="lk">مرتبط بالتقييم الخامس (السؤال 21: وظيفة <bdi>CRC</bdi> في حقل <bdi>FCS</bdi>).</p>
+</section>
+<div class="pager" style="--h:5"><a href="chapter6.html">← السابق</a><a href="chapter8.html">التالي →</a></div>
+</div>
+<script>
+(function(){
+  var K="net-guide-done",done=[];
+  try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){done=[]}
+  document.querySelectorAll("input[data-ch]").forEach(function(b){
+    b.checked=done.indexOf(b.dataset.ch)>-1;
+    b.addEventListener("change",function(){
+      var a=[];try{a=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
+      a=a.filter(function(x){return x!==b.dataset.ch});
+      if(b.checked)a.push(b.dataset.ch);
+      try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>

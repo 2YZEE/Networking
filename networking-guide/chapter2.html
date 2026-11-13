@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>الفصل 2 · إعداد السويتش والأجهزة الطرفية</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" lang="ar">
+<nav class="nav" aria-label="الفصول"><a class="home" href="index.html" style="--h:212">الرئيسية</a><a href="chapter1.html" style="--h:212"><b>1</b><bdi>Networking</bdi></a><a href="chapter2.html" style="--h:188" aria-current="page"><b>2</b><bdi>IOS</bdi></a><a href="chapter3.html" style="--h:150"><b>3</b><bdi>Models</bdi></a><a href="chapter4.html" style="--h:30"><b>4</b><bdi>Physical</bdi></a><a href="chapter5.html" style="--h:280"><b>5</b><bdi>Numbers</bdi></a><a href="chapter6.html" style="--h:335"><b>6</b><bdi>Data Link</bdi></a><a href="chapter7.html" style="--h:5"><b>7</b><bdi>Switching</bdi></a><a href="chapter8.html" style="--h:250"><b>8</b><bdi>Network</bdi></a><a href="chapter9.html" style="--h:95"><b>9</b><bdi>ARP</bdi></a><a href="cheat.html" style="--h:212"><b>★</b><bdi>Cheat</bdi></a></nav>
+<section class="ch" id="ch2" style="--h:188">
+  <div class="chh"><span class="no">2</span><div><h2>إعداد السويتش والأجهزة الطرفية</h2><span class="en">Chapter 2 · Basic Switch and End Device Configuration</span></div>
+    <label class="done"><input type="checkbox" id="d2" data-ch="2"> راجعته</label></div>
+  <p class="one"><b>في جملة:</b> أجهزة <bdi>Cisco</bdi> تُدار عبر سطر الأوامر <bdi>CLI</bdi>: تدخل بـ <bdi>Console</bdi> أو <bdi>SSH</bdi>، وتتنقل بين أوضاع (<code>&gt;</code> ثم <code>#</code> ثم <bdi>config</bdi>)، وتحفظ الإعداد من <bdi>RAM</bdi> إلى <bdi>NVRAM</bdi>.</p>
+
+  <span class="core">Basic Switch &amp; End Device Config</span>
+  <ul class="mm">
+    <li><b>طرق الدخول</b><span>Console</span><span>SSH (recommended)</span><span>Telnet = plaintext</span><span>PuTTY · Tera Term · SecureCRT</span></li>
+    <li><b>الأوضاع</b><span>User EXEC &gt;</span><span>Privileged EXEC #</span><span>Global config</span><span>Line config</span><span>Interface config</span></li>
+    <li><b>بنية الأمر</b><span>Keyword</span><span>Argument</span><span>? help</span><span>Tab</span><span>Ctrl+Shift+6 = break</span></li>
+    <li><b>تأمين الجهاز</b><span>hostname</span><span>line console 0</span><span>enable secret</span><span>line vty 0 15</span><span>service password-encryption</span><span>banner motd</span></li>
+    <li><b>ملفات الإعداد</b><span>running-config = RAM</span><span>startup-config = NVRAM</span><span>copy running-config startup-config</span><span>erase startup-config + reload</span></li>
+    <li><b>إعداد IP</b><span>Manual</span><span>DHCP</span><span>SVI: interface vlan 1</span></li>
+  </ul>
+
+  <figure class="fig">
+    <svg viewBox="0 0 360 322" role="img" aria-label="التنقل بين أوضاع IOS">
+      <defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="mk" d="M0 0L10 5L0 10z"/></marker></defs>
+      <rect class="bx" x="90" y="8" width="180" height="40" rx="8"/><text x="180" y="25">User EXEC</text><text class="m" x="180" y="41">Switch&gt;</text>
+      <line class="ln" x1="180" y1="48" x2="180" y2="86" marker-end="url(#a2)"/><text class="m st" x="192" y="72">enable</text>
+      <rect class="bx" x="90" y="88" width="180" height="40" rx="8"/><text x="180" y="105">Privileged EXEC</text><text class="m" x="180" y="121">Switch#</text>
+      <line class="ln" x1="180" y1="128" x2="180" y2="166" marker-end="url(#a2)"/><text class="m st" x="192" y="152">configure terminal</text>
+      <rect class="bx" x="90" y="168" width="180" height="40" rx="8"/><text x="180" y="185">Global Config</text><text class="m" x="180" y="201">Switch(config)#</text>
+      <path class="ln" d="M180 208 V228 H95 V256" marker-end="url(#a2)"/>
+      <path class="ln" d="M180 208 V228 H265 V256" marker-end="url(#a2)"/>
+      <rect class="bx" x="15" y="258" width="160" height="56" rx="8"/><text x="95" y="275">Line Config</text><text class="m" x="95" y="291">(config-line)#</text><text class="s" x="95" y="306">line console 0</text>
+      <rect class="bx" x="185" y="258" width="160" height="56" rx="8"/><text x="265" y="275">Interface Config</text><text class="m" x="265" y="291">(config-if)#</text><text class="s" x="265" y="306">interface vlan 1</text>
+    </svg>
+    <figcaption>الرجوع: <code>exit</code> خطوة واحدة للخلف، و<code>end</code> أو <code>Ctrl+Z</code> مباشرة إلى <code>#</code>.</figcaption>
+  </figure>
+
+  <div class="parts">
+    <div class="part"><h3>القسم الأول · الدخول والتنقل</h3>
+      <p>نظام التشغيل = <bdi>Shell</bdi> و<bdi>Kernel</bdi> و<bdi>Hardware</bdi>. تُدار أجهزة الشبكة بـ <bdi>CLI</bdi> لأن الواجهة الرسومية قد تتعطل. <bdi>Console</bdi> منفذ مادي للإعداد الأولي، و<bdi>SSH</bdi> آمن وهو الموصى به عن بعد، و<bdi>Telnet</bdi> يرسل كلمات المرور بنص مكشوف. الأمر يتكون من <bdi>Keyword</bdi> معرّف في النظام و<bdi>Argument</bdi> يكتبه المستخدم. علامة <code>?</code> تعرض الأوامر المتاحة، و<bdi>Tab</bdi> يكمل الأمر، ويمكن اختصار الأمر لأقل حروف تميزه (<code>conf</code>). عند ظهور <code>--More--</code>: <bdi>Enter</bdi> للسطر التالي و<bdi>Space</bdi> للشاشة التالية.</p></div>
+    <div class="part"><h3>القسم الثاني · الإعداد الأساسي</h3>
+      <p>أول أمر هو تسمية الجهاز: يبدأ بحرف، بلا مسافات، وينتهي بحرف أو رقم، وأقل من 64 حرفاً. ثم تؤمّن الدخول: <code>password</code> مع <code>login</code> على <code>line console 0</code>، و<code>enable secret</code> للوضع المميز، وخطوط <bdi>VTY</bdi> من 0 إلى 15 للدخول البعيد. <code>service password-encryption</code> يشفّر كلمات المرور في الملفات، و<code>banner motd</code> يعرض تحذيراً للمتسللين. <bdi>running-config</bdi> تعمل فوراً وتضيع عند إعادة التشغيل، و<bdi>startup-config</bdi> تبقى. للأجهزة الطرفية: <bdi>IP</bdi> يدوي أو <bdi>DHCP</bdi>، وعلى السويتش <bdi>SVI</bdi> على <bdi>VLAN 1</bdi> للإدارة عن بعد.</p></div>
+  </div>
+
+
+  <details><summary>كيف تنتقل من <code>&gt;</code> إلى وضع الإعداد العام؟</summary><p><code>enable</code> ثم <code>configure terminal</code>.</p></details>
+  <details><summary>الفرق بين <bdi>running-config</bdi> و<bdi>startup-config</bdi>؟</summary><p>الأولى في <bdi>RAM</bdi> وتتأثر فوراً وتضيع عند الإطفاء. الثانية في <bdi>NVRAM</bdi> وتبقى وتُحمَّل عند الإقلاع. الحفظ: <code>copy running-config startup-config</code>.</p></details>
+  <details><summary>خطوات إعداد <bdi>SVI</bdi>؟</summary><p><code>interface vlan 1</code> ثم <code>ip address ip-address subnet-mask</code> ثم <code>no shutdown</code>.</p></details>
+  <p class="lk">مرتبط بالتقييم الرابع: السؤال 17 (<bdi>startup-config</bdi>) والسؤال 19 (<bdi>SVI</bdi> و<bdi>DHCP</bdi>).</p>
+</section>
+<div class="pager" style="--h:188"><a href="chapter1.html">← السابق</a><a href="chapter3.html">التالي →</a></div>
+</div>
+<script>
+(function(){
+  var K="net-guide-done",done=[];
+  try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){done=[]}
+  document.querySelectorAll("input[data-ch]").forEach(function(b){
+    b.checked=done.indexOf(b.dataset.ch)>-1;
+    b.addEventListener("change",function(){
+      var a=[];try{a=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
+      a=a.filter(function(x){return x!==b.dataset.ch});
+      if(b.checked)a.push(b.dataset.ch);
+      try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>
